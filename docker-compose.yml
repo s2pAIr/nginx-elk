@@ -3,17 +3,17 @@ version: '3'
 services:
 
   nginx:
+    #build:
+    #  context: nginx/
     image: s2pair/nginx-modsec-crs
-    container_name: nginx-modsec-crs
     volumes:
       - ./nginx/html/:/usr/local/nginx/html/
       - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/conf/modsecurity.d/:/etc/nginx/modsecurity.d/include.conf
-      - ./nginx/conf/modsecurity.d/:/etc/nginx/modsecurity.d/modsecurity.conf
+      - ./nginx/conf/modsecurity.d/:/etc/nginx/modsecurity.d/
       - ./nginx/modsecurity/rules/:/usr/local/nginx/conf/owasp-modsecurity-crs/rules/
-      - ./nginx/access.log:/var/log/nginx/access.log
-      - ./nginx/error.log:/var/log/nginx/error.log
-      - ./nginx/modsec_audit.log:/var/log/modsec_audit.log
+      - ./nginx/log/access.log:/var/log/nginx/access.log
+      - ./nginx/log/error.log:/var/log/nginx/error.log
+      - ./nginx/log/modsec_audit.log:/var/log/modsec_audit.log
     ports:
       - "80:80"
 
