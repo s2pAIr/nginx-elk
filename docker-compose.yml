@@ -26,6 +26,8 @@ services:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
       - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
       - ./nginx/access.log:/var/log/nginx/access.log
+      - ./nginx/log/error.log:/var/log/nginx/error.log
+      - ./nginx/log/modsec_audit.log:/var/log/modsec_audit.log
     ports:
       - "5000:5000"
     environment:
